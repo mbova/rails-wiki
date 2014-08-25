@@ -6,10 +6,10 @@
   %dl
     %dt.label.label-default= model_class.human_attribute_name(:title)
     %dd
-      pre.prettyprint= @article.title
+      %pre.prettyprint= @article.title
     %dt.label.label-default= model_class.human_attribute_name(:body)
     %dd
-      pre.prettyprint= @article.body
+      %pre.prettyprint= @article.body
 
 .form-group
   = link_to t('.back', :default => t("helpers.links.back")), articles_path, :class => 'btn btn-default'

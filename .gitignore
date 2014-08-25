@@ -82,3 +82,4 @@ pickle-email-*.html
 =======
 secrets.yml
 >>>>>>> 1a2336555e3b081ed3c46bcb25abb16b654a437a
+config/application.yml
