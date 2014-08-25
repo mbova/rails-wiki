@@ -1,5 +1,14 @@
 source 'https://rubygems.org'
-ruby '2.1.2'
+
+gem 'bootstrap-sass'
+gem 'bootstrap-sass-extras'
+gem 'mandrill-api'
+gem 'haml-rails'
+gem 'devise'
+gem 'pundit'
+gem 'stripe'
+gem 'friendly_id'
+
 gem 'rails', '4.1.5'
 gem 'sqlite3'
 gem 'sass-rails', '~> 4.0.3'
@@ -10,32 +19,6 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
-gem 'bootstrap-sass'
-gem 'bootstrap-sass-extras'
-gem 'devise'
-gem 'haml-rails'
-gem 'pundit'
-gem 'mandrill-api'
-group :development do
-  gem 'better_errors'
-  gem 'binding_of_caller', :platforms=>[:mri_21]
-  gem 'html2haml'
-  gem 'hub', :require=>nil
-  gem 'quiet_assets'
-  gem 'rails_layout'
-end
-group :development, :test do
-  gem 'factory_girl_rails'
-  gem 'rspec-rails'
-  gem 'thin'
-end
-group :production do
-  gem 'unicorn'
-end
-group :test do
-  gem 'capybara'
-  gem 'database_cleaner'
-  gem 'faker'
-  gem 'launchy'
-  gem 'selenium-webdriver'
-end
+gem 'unicorn'
+
+
