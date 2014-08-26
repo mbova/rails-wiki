@@ -8,6 +8,7 @@ gem 'devise'
 gem 'pundit'
 gem 'stripe'
 gem 'friendly_id'
+gem 'figaro'
 
 gem 'rails', '4.1.5'
 gem 'sqlite3'
