@@ -61,7 +61,7 @@ Rails.application.configure do
   # config.assets.precompile += %w( search.js )
 
   # ActionMailer Config
-  config.action_mailer.default_url_options = { :host => 'wiki.herokuapp.com' }
+  config.action_mailer.default_url_options = { :host => 'rails-wiki.herokuapp.com' }
   config.action_mailer.delivery_method = :smtp
   # change to true to allow email to be sent during development
   config.action_mailer.perform_deliveries = true
