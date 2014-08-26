@@ -26,14 +26,22 @@
             %span.icon-bar
             %span.icon-bar
             %span.icon-bar
-          %a.navbar-brand(href="#") Wiki
+          %a.navbar-brand(href="/") Wiki
         .navbar-collapse.collapse.navbar-responsive-collapse
           %ul.nav.navbar-nav
-            %li.active= link_to "Link 1", "#"
-            %li= link_to "Link 2", "#"
-            %li= link_to "Link 3", "#"
-            %li= link_to "Link 3", "#"
-
+            %li= link_to "About", "#"
+            %li= link_to "Topics", "#"
+        .user-info.pull-right
+          - if current_user
+            Hello #{link_to (current_user.name || current_user.email), current_user}!
+            = link_to edit_user_registration_path, class: 'btn btn-primary btn-sm' do
+              %span.glyphicon.glyphicon-user
+            = link_to destroy_user_session_path, method: :delete, class: 'btn btn-primary btn-sm' do
+              %span.glyphicon.glyphicon-log-out
+          - else
+            = link_to 'Sign In', new_user_session_path
+            or
+            = link_to 'Sign Up', new_user_registration_path
     .container
       .row
         .col-md-9
