@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  
+  resources :bootsy
   devise_for :users
   resources :articles
   resources :users
