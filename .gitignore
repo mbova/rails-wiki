@@ -78,7 +78,5 @@ pickle-email-*.html
 .env
 .powenv
 
-/config/secrets.yml
-
 # Ignore application configuration
 /config/application.yml
