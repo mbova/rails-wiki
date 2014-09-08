@@ -11,13 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140827153232) do
+ActiveRecord::Schema.define(version: 20140908192629) do
 
   create_table "articles", force: true do |t|
     t.string   "title"
     t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "slug"
+    t.integer  "author"
+    t.boolean  "public"
+  end
+
+  add_index "articles", ["id"], name: "index_articles_on_id", unique: true
+  add_index "articles", ["slug"], name: "index_articles_on_slug"
+
+  create_table "articles_users", id: false, force: true do |t|
+    t.integer "articles_id"
+    t.integer "users_id"
   end
 
   create_table "bootsy_image_galleries", force: true do |t|
@@ -30,6 +41,26 @@ ActiveRecord::Schema.define(version: 20140827153232) do
   create_table "bootsy_images", force: true do |t|
     t.string   "image_file"
     t.integer  "image_gallery_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "friendly_id_slugs", force: true do |t|
+    t.string   "slug",                      null: false
+    t.integer  "sluggable_id",              null: false
+    t.string   "sluggable_type", limit: 50
+    t.string   "scope"
+    t.datetime "created_at"
+  end
+
+  add_index "friendly_id_slugs", ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
+  add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
+  add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
+  add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
+
+  create_table "sharings", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "article_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -52,9 +83,12 @@ ActiveRecord::Schema.define(version: 20140827153232) do
     t.string   "unconfirmed_email"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "slug"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["id"], name: "index_users_on_id", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["slug"], name: "index_users_on_slug"
 
 end
