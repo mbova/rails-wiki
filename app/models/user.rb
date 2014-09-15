@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  has_many :sharings
   has_many :articles, through: :sharings
 
   # Include default devise modules. Others available are:
