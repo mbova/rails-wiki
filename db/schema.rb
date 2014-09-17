@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140911204537) do
+ActiveRecord::Schema.define(version: 20140917174444) do
 
   create_table "articles", force: true do |t|
     t.string   "title"
@@ -23,7 +23,6 @@ ActiveRecord::Schema.define(version: 20140911204537) do
     t.boolean  "public"
   end
 
-  add_index "articles", ["id"], name: "index_articles_on_id", unique: true
   add_index "articles", ["slug"], name: "index_articles_on_slug"
 
   create_table "articles_users", id: false, force: true do |t|

@@ -1,10 +1,9 @@
 class UsersController < ApplicationController
 	def index
-    @users = User.top_rated.paginate(page: params[:page], per_page: 10)
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = User.friendly.find(params[:id])
   end
 
   def update
@@ -19,7 +18,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name)
+    params.require(:user).permit(:name, :membership)
   end
 
 end

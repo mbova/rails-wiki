@@ -1,30 +1,44 @@
-%h2
-  Edit #{resource_name.to_s.humanize}
-= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+- if current_user.membership == nil
+  = link_to 'Go Premium', new_charge_path, { :class => 'btn btn-primary btn-lg'}
+%h2 Edit #{resource_name.to_s.humanize}
+= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { :class => 'form-horizontal', method: :patch }) do |f|
   = devise_error_messages!
-  %div
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true
+  .form-group
+    = f.label :email, :class => 'control-label col-md-2'
+    .col-md-10
+      = f.email_field :email, :class => 'text_field form-control'
   - if devise_mapping.confirmable? && resource.pending_reconfirmation?
     %div
       Currently waiting confirmation for: #{resource.unconfirmed_email}
-  %div
-    = f.label :password
+  .form-group
+    = f.label :password, :class => 'control-label col-md-2'
     %i (leave blank if you don't want to change it)
-    %br/
-    = f.password_field :password, autocomplete: "off"
-  %div
-    = f.label :password_confirmation
-    %br/
-    = f.password_field :password_confirmation, autocomplete: "off"
-  %div
-    = f.label :current_password
+    .col-md-10
+      = f.password_field :password, autocomplete: "off", :class => 'text_field form-control'
+  .form-group
+    = f.label :password_confirmation, :class => 'control-label col-md-2'
+    .col-md-10
+      = f.password_field :password_confirmation, autocomplete: "off", :class => 'text_field form-control'
+  .form-group
+    = f.label :current_password, :class => 'control-label col-md-2'
     %i (we need your current password to confirm your changes)
-    %br/
-    = f.password_field :current_password, autocomplete: "off"
-  %div= f.submit "Update"
-%h3 Cancel my account
-%p
-  Unhappy? #{button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete}
-= link_to "Back", :back
+    .col-md-10
+      = f.password_field :current_password, autocomplete: "off", :class => 'text_field form-control'
+= form_for( current_user, html: { :class => 'form-horizontal', method: :patch} ) do |f|
+  .form-group
+    = f.label :name, :class => 'control-label col-md-2'
+    .col-md-10
+      = f.text_field :name, autofocus: true, :class => 'text_field form-control'
+  .form-group
+    .col-md-offset-2.col-md-10
+      = f.submit "Update", :class => 'btn btn-default'
+%h3 Unhappy?
+.form-group
+  .col-md-10
+    #{button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: 'btn btn-default'}
+  %span
+  .label.label-danger
+    THIS IS PERMANENT. ALL WIKIS WILL BE LOST!
+.form-group
+  .col-md-10
+    = link_to "Back to Wikis", articles_path, class: 'btn btn-primary'

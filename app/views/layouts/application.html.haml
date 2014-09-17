@@ -30,7 +30,7 @@
         .navbar-collapse.collapse.navbar-responsive-collapse
           %ul.nav.navbar-nav
             %li= link_to "About", "#"
-            %li= link_to "Topics", "#"
+            %li= link_to "Articles", articles_path
         .user-info.pull-right
           - if current_user
             Hello #{link_to (current_user.name || current_user.email), current_user}!
@@ -38,6 +38,8 @@
               %span.glyphicon.glyphicon-user
             = link_to destroy_user_session_path, method: :delete, class: 'btn btn-primary btn-sm' do
               %span.glyphicon.glyphicon-log-out
+            - if current_user.membership = nil
+              = link_to 'Go Premium', new_charge_path
           - else
             = link_to 'Sign In', new_user_session_path
             or

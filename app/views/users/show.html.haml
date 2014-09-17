@@ -1,0 +1,24 @@
+.row
+  .col-md-12
+    - if current_user.membership == nil
+      = link_to 'Go Premium', new_charge_path, { :class => 'btn btn-primary btn-lg'}
+%br
+.row
+  .col-md-2
+    %h4 Name:
+  .col-md-10
+    = current_user.name
+.row
+  .col-md-2
+    %h4 Email:
+  .col-md-10
+    = current_user.email
+.row
+  .col-md-2
+    %h4 Membership Level:
+  .col-md-10
+    = current_user.membership
+%br
+.row
+  .col-md-12
+    = link_to "Back to Wikis", articles_path, class: 'btn btn-default'
