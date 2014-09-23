@@ -4,7 +4,8 @@ class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.json
   def index
-    @articles = Article.all
+    @articles = policy_scope(Article)
+    authorize @articles
   end
 
   # GET /articles/1
@@ -19,6 +20,7 @@ class ArticlesController < ApplicationController
   # GET /articles/new
   def new
     @article = Article.new
+    authorize @article
   end
 
   # GET /articles/1/edit
@@ -30,6 +32,7 @@ class ArticlesController < ApplicationController
   def create
     
     @article = current_user.articles.build(article_params)
+    authorize @article
     @article.author_id = current_user.id
 
     respond_to do |format|

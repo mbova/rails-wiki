@@ -10,4 +10,8 @@ class User < ActiveRecord::Base
   extend FriendlyId
   friendly_id :name, use: :slugged
 
+  def role?(base_role)
+    role == base_role.to_s
+  end
+
 end
