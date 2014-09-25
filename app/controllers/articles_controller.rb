@@ -37,6 +37,7 @@ class ArticlesController < ApplicationController
 
     respond_to do |format|
       if @article.save
+        @article.users << current_user
         format.html { redirect_to @article, notice: 'Article was successfully created.' }
         format.json { render :show, status: :created, location: @article }
       else

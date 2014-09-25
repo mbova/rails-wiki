@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
-  
+
   resources :bootsy
   
   devise_for :users
     resources :users, only: [:update, :show, :index]
 
-  resources :articles
+  resources :articles, :shallow => true do
+    resources :collaborations
+  end
 
   resources :charges, only: [:new, :create]
 

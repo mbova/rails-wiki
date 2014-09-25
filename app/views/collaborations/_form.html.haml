@@ -1,0 +1,13 @@
+= form_for [@article, @collaboration], :url => article_collaborations_path(@article) do |f|
+  - if @collaboration.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@collaboration.errors.count, "error")} prohibited this collaboration from being saved:"
+      %ul
+        - @collaboration.errors.full_messages.each do |msg|
+          %li= msg
+  .form-group
+    = f.label :user_id, :class => 'control-label col-md-2'
+  .col-md-10
+    = f.text_field :user_id, :class => 'text_field form-control'
+  .actions
+    = f.submit 'Save'

@@ -1,0 +1,17 @@
+%h1 Listing collaborations
+
+%table
+  %tr
+    %th
+    %th
+    %th
+
+  - @collaborations.each do |collaboration|
+    %tr
+      %td= link_to 'Show', collaboration
+      %td= link_to 'Edit', edit_collaboration_path(collaboration)
+      %td= link_to 'Destroy', collaboration, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Collaboration', new_collaboration_path
