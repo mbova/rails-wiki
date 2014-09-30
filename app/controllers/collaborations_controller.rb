@@ -16,6 +16,7 @@ class CollaborationsController < ApplicationController
   def new
     @article = Article.friendly.find params[:article_id] 
     @collaboration = Collaboration.new
+    @users = User.all
   end
 
   # GET /collaborations/1/edit
@@ -30,15 +31,15 @@ class CollaborationsController < ApplicationController
     @user = User.friendly.find(params[:user_id])
     @collaboration.article = @article
     @collaboration.user = @user
-    # respond_to do |format|
-    #   if @collaboration.save
-    #     format.html { redirect_to [@article, @collaboration], notice: 'Collaboration was successfully created.' }
-    #     format.json { render :show, status: :created, location: @collaboration }
-    #   else
-    #     format.html { render :new }
-    #     format.json { render json: @collaboration.errors, status: :unprocessable_entity }
-    #   end
-    # end
+    respond_to do |format|
+      if @collaboration.save
+        format.html { redirect_to article_path(@article.slug), notice: "#{@user.email} successfully added as a collaborator." }
+        format.json { render :show, status: :created, location: @collaboration }
+      else
+        format.html { render :new }
+        format.json { render json: @collaboration.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   # PATCH/PUT /collaborations/1
@@ -73,6 +74,6 @@ class CollaborationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def collaboration_params
-      params.require(:collaboration).permit(:article_id, :user_id)
+      params.permit(:article_id, :user_id)
     end
 end
